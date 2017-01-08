@@ -12,6 +12,7 @@ export class Runner {
   public onStderr = new TypedEvent<{ lines: string[] }>();
   constructor(private config: {
     cmd: string,
+    index: number,
   }) {
   }
 
@@ -23,6 +24,8 @@ export class Runner {
       kill(previous.pid);
     }
 
+    console.log(`[${this.config.index}] ## started`);
+
     /** Start a new one */
     const child = spawn(this.config.cmd, { stdio: 'pipe' });
 
@@ -33,6 +36,7 @@ export class Runner {
       if (child !== this.child) {
         return;
       }
+      console.log(`[${this.config.index}] ## exited with code: ${code}`);
       this.onExit.emit({ code: code });
     });
     this.child.stdout.on('data', (data) => {

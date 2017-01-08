@@ -14,6 +14,7 @@ export function starts(config: StartsConfig) {
     config.run.forEach((run, index) => {
       const runner = new Runner({
         cmd: run.cmd,
+        index
       });
 
       /**
