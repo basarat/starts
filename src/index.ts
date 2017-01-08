@@ -11,10 +11,16 @@ export function starts(config: StartsConfig) {
 
   /** For each of the run patterns do a watch */
   if (config.run && config.run.length) {
-    config.run.forEach((run) => {
+    config.run.forEach((run, index) => {
       const runner = new Runner({
         cmd: run.cmd,
       });
+
+      /**
+       * Logs
+       */
+      runner.onStdout.on(({ data }) => console.log(`[${index}] ${data}`));
+      runner.onStderr.on(({ data }) => console.log(`[${index}] ${data}`));
 
       /** Keep alive */
       if (run.keepAlive) {
