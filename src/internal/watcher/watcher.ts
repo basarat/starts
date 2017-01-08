@@ -8,7 +8,7 @@ class WatchManager {
   private getWatcher(patterns: string[]) {
     const key = JSON.stringify(patterns);
     if (!this.watchers[key]) {
-      this.watchers[key] = chokidar.watch(patterns);
+      this.watchers[key] = chokidar.watch(patterns, { ignoreInitial: true });
     }
     return this.watchers[key];
   }
