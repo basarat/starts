@@ -34,10 +34,7 @@ export function starts(config: StartsConfig) {
       if (run.watch) {
         addWatch(run.watch, () => {
 
-          /** Restart */
-          runner.restart();
-
-          /** live reload */
+          /** Prepare for live reload */
           runner.onExit.once(({ code }) => {
             if (code !== 0) return;
 
@@ -58,6 +55,8 @@ export function starts(config: StartsConfig) {
             }
           });
 
+          /** Restart */
+          runner.restart();
         });
       }
     });

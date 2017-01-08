@@ -19,17 +19,26 @@ export const clientJsPath = prefix + '/reload-client.js'
 const triggerPath = prefix + '/trigger'
 const triggerCSSPath = prefix + '/triggercss'
 
+/**
+ * Used for communication between client script and our generated js
+ */
+const reloadKey = 'r';
+const reloadCssKey = 'rcss';
 
+
+/**
+ * The JS we send down to the client to detect live reload requests
+ */
 const clientJsContent = `
 var ws
 function socket() {
   ws = new WebSocket("ws://" + window.location.host)
   ws.onmessage = function (e) {
     var data = JSON.parse(e.data)
-    if (data.r) {
+    if (data.${reloadKey}) {
       location.reload()
     }
-    if (data.rcss) {
+    if (data.${reloadCssKey}) {
       refreshCSS()
     }
   }
@@ -58,12 +67,6 @@ setInterval(function () {
 }, 3000)
 `;
 
-export const events = {
-  reload: new TypedEvent<{}>(),
-  reloadcss: new TypedEvent<{}>(),
-};
-
-
 export class Livereload {
   constructor(public options: { verbose: boolean }) {
   }
@@ -89,14 +92,14 @@ export class Livereload {
     if (pathname == triggerPath) {
       res.writeHead(200)
       res.end('ok')
-      events.reload.emit({});
+      this.triggerReload();
       return;
     }
 
     if (pathname == triggerCSSPath) {
       res.writeHead(200)
       res.end('ok')
-      events.reloadcss.emit({});
+      this.triggerReloadCss();
       return;
     }
 
@@ -122,25 +125,7 @@ export class Livereload {
           this.wsArray.splice(index, 1);
         }
       })
-    })
-
-    events.reload.on(() => {
-      this.writeLog('## send reload event via websocket to browser')
-      this.wsArray.forEach((w) => {
-        w.send(JSON.stringify({ r: Date.now().toString() }), function(e) {
-          if (e) { console.log('websocket send error: ' + e) }
-        })
-      })
-    })
-
-    events.reloadcss.on(() => {
-      this.writeLog('## send reloadcss event via websocket to browser')
-      this.wsArray.forEach((w) => {
-        w.send(JSON.stringify({ rcss: Date.now().toString() }), function(e) {
-          if (e) { console.log('websocket send error: ' + e) }
-        })
-      })
-    })
+    });
   }
 
   triggerReload = (delayMs?: number) => {
@@ -149,7 +134,12 @@ export class Livereload {
     }
 
     setTimeout(() => {
-      events.reload.emit({})
+      this.writeLog('## send reload event via websocket to browser')
+      this.wsArray.forEach((w) => {
+        w.send(JSON.stringify({ [reloadKey]: Date.now().toString() }), function(e) {
+          if (e) { console.log('websocket send error: ' + e) }
+        })
+      });
     }, delayMs);
   }
 
@@ -159,7 +149,12 @@ export class Livereload {
     }
 
     setTimeout(function() {
-      events.reloadcss.emit({});
+      this.writeLog('## send reloadcss event via websocket to browser')
+      this.wsArray.forEach((w) => {
+        w.send(JSON.stringify({ [reloadCssKey]: Date.now().toString() }), function(e) {
+          if (e) { console.log('websocket send error: ' + e) }
+        })
+      });
     }, delayMs);
   }
 }
