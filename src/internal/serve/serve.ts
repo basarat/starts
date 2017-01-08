@@ -6,18 +6,14 @@ import * as serveStatic from 'serve-static';
 import * as http from 'http';
 const injector = require('connect-injector')
 
-export function serve(config: ServeConfig & { verbose: boolean }) {
-  return new Server(config);
-}
-
 export class Server {
-  app: connect.Server;
-  client: Livereload;
-  server: http.Server;
+  private app: connect.Server;
+  private client: Livereload;
+  private server: http.Server;
 
-  constructor(private options: ServeConfig & { verbose: boolean }) {
+  constructor(private config: ServeConfig & { verbose: boolean }) {
     this.app = connect();
-    this.client = new Livereload(options);
+    this.client = new Livereload(config);
 
     /** use our client's middlware */
     this.app.use(this.client.middleware);
@@ -35,11 +31,11 @@ export class Server {
 
     /** Also serve the directory */
     this.app.use(
-      serveStatic(options.dir || '.')
+      serveStatic(config.dir || '.')
     );
 
-    const host = this.options.host || '0.0.0.0';
-    const port = this.options.port || 4000;
+    const host = this.config.host || '0.0.0.0';
+    const port = this.config.port || 4000;
 
     /** create http server */
     this.server = http.createServer(this.app);
@@ -59,7 +55,7 @@ export class Server {
     })
   }
 
-  writeLog(logLine: any) {
-    this.options.verbose && console.log(logLine);
+  private writeLog(logLine: any) {
+    this.config.verbose && console.log(logLine);
   }
 }

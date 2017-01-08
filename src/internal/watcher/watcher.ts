@@ -16,7 +16,7 @@ class WatchManager {
   addWatch = (patterns: string[], cb: () => void) => {
     const watcher = this.getWatcher(patterns);
 
-    const debounced = debounce(cb, 100);
+    const debounced = debounce(() => cb(), 100);
 
     // Just the ones that impact file listing
     // https://github.com/paulmillr/chokidar#methods--events
