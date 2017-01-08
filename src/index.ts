@@ -50,7 +50,6 @@ export function starts(config: StartsConfig) {
               const _ensure: never = reload;
             }
           }
-
         });
       }
     });

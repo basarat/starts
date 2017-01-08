@@ -25,7 +25,7 @@ export class Server {
           return res.getHeader('content-type') && res.getHeader('content-type').indexOf('text/html') !== -1
         },
         function(data, req, res, callback) {
-          callback(null, data.toString().replace('</body>', `<script src="${clientJsPath}js"></script></body>`));
+          callback(null, data.toString().replace('</body>', `<script src="${clientJsPath}"></script></body>`));
         })
     );
 
