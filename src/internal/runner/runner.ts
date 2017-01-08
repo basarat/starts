@@ -1,16 +1,16 @@
 import { kill } from './treeKill';
 import * as cp from 'child_process';
 import { spawn } from './defaultShell';
+import { TypedEvent } from '../utils';
 /**
  * Encapsulates a command, allowing you to kill and restart it at will
  */
 export class Runner {
   private child: cp.ChildProcess | null;
+  public onExit = new TypedEvent<{ code: number }>();
   constructor(private config: {
     cmd: string,
-    onExit: (code: number) => void,
   }) {
-
   }
 
   restart() {
@@ -31,7 +31,7 @@ export class Runner {
       if (child !== this.child) {
         return;
       }
-      this.config.onExit(code);
+      this.onExit.emit({ code: code });
     });
   }
 }

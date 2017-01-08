@@ -14,12 +14,16 @@ export function starts(config: StartsConfig) {
     config.run.forEach((run) => {
       const runner = new Runner({
         cmd: run.cmd,
-        onExit: (code: number) => {
-          if (code !== 0 && run.keepAlive) {
+      });
+
+      /** Keep alive */
+      if (run.keepAlive) {
+        runner.onExit.on(({ code }) => {
+          if (code !== 0) {
             runner.restart();
           }
-        }
-      });
+        });
+      }
 
       /** initial run */
       if (config.initialRun) {
@@ -34,21 +38,26 @@ export function starts(config: StartsConfig) {
           runner.restart();
 
           /** live reload */
-          const reload = run.reload || 'all';
-          if (server) {
-            if (reload === 'all') {
-              server.triggerReload();
+          runner.onExit.once(({ code }) => {
+            if (code !== 0) return;
+
+            const reload = run.reload || 'all';
+            if (server) {
+              if (reload === 'all') {
+                server.triggerReload();
+              }
+              else if (reload == 'css') {
+                server.triggerReloadCss();
+              }
+              else if (reload == 'none') {
+                // Nothin
+              }
+              else {
+                const _ensure: never = reload;
+              }
             }
-            else if (reload == 'css') {
-              server.triggerReloadCss();
-            }
-            else if (reload == 'none') {
-              // Nothin
-            }
-            else {
-              const _ensure: never = reload;
-            }
-          }
+          });
+
         });
       }
     });
