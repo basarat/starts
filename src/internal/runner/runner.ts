@@ -35,13 +35,13 @@ export class Runner {
       }
       this.onExit.emit({ code: code });
     });
-    this.child.on('stdout', (data) => {
+    this.child.stdout.on('data', (data) => {
       if (child !== this.child) {
         return;
       }
       this.onStdout.emit({ data: data.toString() });
     });
-    this.child.on('stderr', (data) => {
+    this.child.stderr.on('data', (data) => {
       if (child !== this.child) {
         return;
       }
