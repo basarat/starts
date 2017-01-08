@@ -34,7 +34,7 @@ export function starts(config: StartsConfig) {
           runner.restart();
 
           /** live reload */
-          const reload = run.reload ? 'all' : run.reload;
+          const reload = run.reload || 'all';
           if (server) {
             if (reload === 'all') {
               server.triggerReload();
