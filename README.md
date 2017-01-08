@@ -29,11 +29,11 @@ starts({
    * If you edit any of the files on the right, the command on the left executes.
    * and if we were serving something, the connected web pages reload as well.
    */
-  run: {
-    "npm run emails": ["src/emails"],
-    "npm run pdfs": ["src/pdfs"],
-    "npm run app": ["src/app"],
-  }
+  run: [
+    { cmd: "npm run emails", include: ["src/emails"] },
+    { cmd: "npm run pdfs", include: ["src/pdfs"] },
+    { cmd: "npm run app", include: ["src/app"] },
+  ]
 });
 ```
 

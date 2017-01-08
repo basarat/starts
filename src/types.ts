@@ -5,7 +5,10 @@ export type ServeConfig = {
 }
 
 export type RunConfig = {
-  command: string, 
+  cmd: string
+  include: string[]
+  exclude?: string[]
+  reload?: 'all', 'css'
 }
 
 export type StartsConfig = {
