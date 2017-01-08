@@ -5,14 +5,20 @@
 import { TypedEvent } from '../utils';
 import * as parseUrl from 'parseurl';
 import { Server as WS } from 'ws';
+import * as http from 'http';
 
 /**
  * Client constants
  */
 const prefix = '/__livereload__';
-const clientJsPath = prefix + '/reload-client.js'
+export const clientJsPath = prefix + '/reload-client.js'
+
+/**
+ * Used to trigger reloads
+ */
 const triggerPath = prefix + '/trigger'
 const triggerCSSPath = prefix + '/triggercss'
+
 
 const clientJsContent = `
 var ws
@@ -58,16 +64,16 @@ export const events = {
 };
 
 
-class Livereload {
+export class Livereload {
   constructor(public options: { verbose: boolean }) {
   }
-  
+
   writeLog(logLine: any) {
     this.options.verbose && console.log(logLine);
   }
 
   /** Register this as a connect middleware */
-  middleFunc = (req, res, next) => {
+  middleware = (req, res, next) => {
     var pathname = parseUrl(req).pathname
     if (pathname.indexOf(prefix) == -1) {
       next()
@@ -105,8 +111,8 @@ class Livereload {
   /**
    * Starts a websocket server
    */
-  startWS = (server) => {
-    this.wss = new WS({ server: server })
+  startWS = (server: http.Server) => {
+    this.wss = new WS({ server: server });
 
     this.wss.on('connection', (ws) => {
       this.wsArray.push(ws)
