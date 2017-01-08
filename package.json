@@ -1,0 +1,25 @@
+{
+  "name": "starts",
+  "version": "0.0.0",
+  "description": "Simplify your live development workflow",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basarat/starts.git"
+  },
+  "keywords": [
+    "typescript",
+    "live",
+    "react",
+    "angular"
+  ],
+  "author": "basaratali@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/basarat/starts/issues"
+  },
+  "homepage": "https://github.com/basarat/starts#readme"
+}
