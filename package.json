@@ -2,9 +2,13 @@
   "name": "starts",
   "version": "0.0.0",
   "description": "Simplify your live development workflow",
-  "main": "./lib/index.js",
+  "main": "lib/index.js",
+  "typings": "lib/index",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "buildtsc": "tsc -p .",
+    "test": "npm run buildtsc",
+    "preversion": "npm run test",
+    "postversion": "git push --follow-tags && npm publish"
   },
   "repository": {
     "type": "git",
