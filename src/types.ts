@@ -7,7 +7,7 @@ export type ServeConfig = {
 export type RunConfig = {
   cmd: string
   watch: string[]
-  reload?: 'all' | 'css'
+  reload?: /** Default */'all' | 'css' | 'none'
   args?: string[]
   keepAlive?: boolean
 }

@@ -21,16 +21,36 @@ export function starts(config: StartsConfig) {
           }
         }
       });
+
+      /** initial run */
       if (config.initialRun) {
         runner.restart();
       }
+
+      /** watch run */
       if (run.watch) {
         addWatch(run.watch, () => {
-          runner.restart();
-          /** TODO: live reload */
-          if (!run.reload) {
 
+          /** Restart */
+          runner.restart();
+
+          /** live reload */
+          const reload = run.reload ? 'all' : run.reload;
+          if (server) {
+            if (reload === 'all') {
+              server.triggerReload();
+            }
+            else if (reload == 'css') {
+              server.triggerReloadCss();
+            }
+            else if (reload == 'none') {
+              // Nothin
+            }
+            else {
+              const _ensure: never = reload;
+            }
           }
+
         });
       }
     });

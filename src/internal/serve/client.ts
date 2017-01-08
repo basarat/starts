@@ -153,7 +153,7 @@ export class Livereload {
     }, delayMs);
   }
 
-  triggerCSSReload = (delayMs?: number) => {
+  triggerReloadCss = (delayMs?: number) => {
     if (delayMs) {
       this.writeLog('## delay reloadcss for ' + delayMs + ' ms')
     }

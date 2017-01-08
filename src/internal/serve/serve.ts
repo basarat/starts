@@ -55,6 +55,9 @@ export class Server {
     })
   }
 
+  triggerReload = () => this.client.triggerReload();
+  triggerReloadCss = () => this.client.triggerReloadCss();
+
   private writeLog(logLine: any) {
     this.config.verbose && console.log(logLine);
   }

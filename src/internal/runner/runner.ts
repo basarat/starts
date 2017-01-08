@@ -8,7 +8,7 @@ export class Runner {
   constructor(private config: {
     cmd: string,
     args: string[],
-    onExit: (code: number) => void
+    onExit: (code: number) => void,
   }) {
 
   }
