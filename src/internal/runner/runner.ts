@@ -24,7 +24,7 @@ export class Runner {
     }
 
     /** Start a new one */
-    const child = spawn(this.config.cmd, { stdio: 'inherit' });
+    const child = spawn(this.config.cmd, { stdio: 'pipe' });
 
     /** Store the new one */
     this.child = child;
