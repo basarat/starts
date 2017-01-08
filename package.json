@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/basarat/starts/issues"
   },
-  "homepage": "https://github.com/basarat/starts#readme"
+  "homepage": "https://github.com/basarat/starts#readme",
+  "devDependencies": {
+    "typescript": "2.1.4"
+  }
 }
