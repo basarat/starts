@@ -8,8 +8,8 @@ import { TypedEvent } from '../utils';
 export class Runner {
   private child: cp.ChildProcess | null;
   public onExit = new TypedEvent<{ code: number }>();
-  public onStdout = new TypedEvent<{ data: string }>();
-  public onStderr = new TypedEvent<{ data: string }>();
+  public onStdout = new TypedEvent<{ lines: string[] }>();
+  public onStderr = new TypedEvent<{ lines: string[] }>();
   constructor(private config: {
     cmd: string,
   }) {
@@ -39,13 +39,13 @@ export class Runner {
       if (child !== this.child) {
         return;
       }
-      this.onStdout.emit({ data: data.toString() });
+      this.onStdout.emit({ lines: data.toString().split(/\r\n?|\n/) });
     });
     this.child.stderr.on('data', (data) => {
       if (child !== this.child) {
         return;
       }
-      this.onStderr.emit({ data: data.toString() });
+      this.onStderr.emit({ lines: data.toString().split(/\r\n?|\n/) });
     });
   }
 }

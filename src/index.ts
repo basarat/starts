@@ -19,8 +19,8 @@ export function starts(config: StartsConfig) {
       /**
        * Logs
        */
-      runner.onStdout.on(({ data }) => console.log(`[${index}] ${data}`));
-      runner.onStderr.on(({ data }) => console.log(`[${index}] ${data}`));
+      runner.onStdout.on(({ lines }) => lines.map(line => console.log(`[${index}] ${line}`)));
+      runner.onStderr.on(({ lines }) => lines.map(line => console.log(`[${index}] ${line}`)));
 
       /** Keep alive */
       if (run.keepAlive) {
