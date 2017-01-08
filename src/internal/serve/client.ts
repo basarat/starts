@@ -61,6 +61,7 @@ export const events = {
 class Livereload {
   constructor(public options: { verbose: boolean }) {
   }
+  
   writeLog(logLine: any) {
     this.options.verbose && console.log(logLine);
   }
