@@ -49,6 +49,34 @@ Run it `npm install ts-node --save --save-exact` with `package.json`:
 
 > Ofcourse you can use js / raw node if you want to. But why would you.
 
+## More 
+
+All the config options:
+
+```
+export type ServeConfig = {
+  dir?: string
+  port?: number
+  host?: string
+}
+
+export type RunConfig = {
+  cmd: string
+  watch: string[]
+  reload?: /** Default */ 'all' | 'css' | 'none'
+  args?: string[]
+  keepAlive?: boolean
+}
+
+export type StartsConfig = {
+  verbose?: boolean
+  serve?: ServeConfig
+  run?: RunConfig[]
+  /** autorun initially */
+  initialRun?: boolean
+}
+```
+
 
 [travis-image]:https://travis-ci.org/basarat/starts.svg?branch=master
 [travis-url]:https://travis-ci.org/basarat/starts
