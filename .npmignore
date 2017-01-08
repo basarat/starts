@@ -1,0 +1,14 @@
+# IDE 
+.alm
+.vscode
+.idea
+
+# Editor settings
+.editorconfig
+alm.json
+
+# build tools
+.travis.yml
+
+# Logs
+npm-debug.log*
