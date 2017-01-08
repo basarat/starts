@@ -18,6 +18,9 @@ export type StartsConfig = {
   verbose?: boolean
   serve?: ServeConfig
   run?: RunConfig[]
-  /** autorun initially */
-  initialRun?: boolean
+  /** 
+   * autorun initially
+   * Default : true
+   **/
+  autorun?: boolean
 }

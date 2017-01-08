@@ -32,7 +32,7 @@ export function starts(config: StartsConfig) {
       }
 
       /** initial run */
-      if (config.initialRun) {
+      if (config.autorun !== false) {
         runner.restart();
       }
 
