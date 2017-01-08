@@ -30,9 +30,9 @@ starts({
    * and if we were serving something, the connected web pages reload as well.
    */
   run: [
-    { cmd: "npm run emails", include: ["src/emails"] },
-    { cmd: "npm run pdfs", include: ["src/pdfs"] },
-    { cmd: "npm run app", include: ["src/app"] },
+    { cmd: "npm run emails", watch: ["src/emails"] },
+    { cmd: "npm run pdfs", watch: ["src/pdfs"] },
+    { cmd: "npm run app", watch: ["src/app"] },
   ]
 });
 ```

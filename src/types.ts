@@ -6,8 +6,7 @@ export type ServeConfig = {
 
 export type RunConfig = {
   cmd: string
-  include: string[]
-  exclude?: string[]
+  watch: string[]
   reload?: 'all', 'css'
 }
 
