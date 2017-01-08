@@ -63,10 +63,9 @@ export type ServeConfig = {
 export type RunConfig = {
   cmd: string
   watch: string[]
-  reload?: /** Default */'all' | 'css' | 'none'
+  reload?: /** Default */ 'all' | 'css' | 'none'
   keepAlive?: boolean
 }
-
 
 /**
  * The complete config
@@ -80,6 +79,8 @@ export type StartsConfig = {
 }
 ```
 
+## Inspiration
+Inspired by `concurrently`, `nodemon` and light-server 🌹
 
 [travis-image]:https://travis-ci.org/basarat/starts.svg?branch=master
 [travis-url]:https://travis-ci.org/basarat/starts
