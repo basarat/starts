@@ -11,7 +11,7 @@
 
 I consult as a pure frontend developer and normally have all JS / HTML generated into a `public` folder that we then upload to our CDN (normally S3). We have a few projects with `"start": "npm run emails:live & npm run pdfs:live & npm run app:live"`. It was time for something simpler. Perhaps you are are same  🌹
 
-## Quickstarts
+## Quick starts
 Install
 
 `npm install starts --save-dev --save-exact`
