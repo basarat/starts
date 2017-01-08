@@ -63,11 +63,14 @@ export type ServeConfig = {
 export type RunConfig = {
   cmd: string
   watch: string[]
-  reload?: /** Default */ 'all' | 'css' | 'none'
-  args?: string[]
+  reload?: /** Default */'all' | 'css' | 'none'
   keepAlive?: boolean
 }
 
+
+/**
+ * The complete config
+ */
 export type StartsConfig = {
   verbose?: boolean
   serve?: ServeConfig

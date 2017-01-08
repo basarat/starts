@@ -1,5 +1,6 @@
 import { kill } from './treeKill';
 import * as cp from 'child_process';
+import { spawn } from './defaultShell';
 /**
  * Encapsulates a command, allowing you to kill and restart it at will
  */
@@ -7,7 +8,6 @@ export class Runner {
   private child: cp.ChildProcess | null;
   constructor(private config: {
     cmd: string,
-    args: string[],
     onExit: (code: number) => void,
   }) {
 
@@ -22,7 +22,7 @@ export class Runner {
     }
 
     /** Start a new one */
-    const child = cp.spawn(this.config.cmd, this.config.args, { stdio: 'inherit' });
+    const child = spawn(this.config.cmd, { stdio: 'inherit' });
 
     /** Store the new one */
     this.child = child;

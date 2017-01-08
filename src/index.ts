@@ -14,7 +14,6 @@ export function starts(config: StartsConfig) {
     config.run.forEach((run) => {
       const runner = new Runner({
         cmd: run.cmd,
-        args: run.args || [],
         onExit: (code: number) => {
           if (code !== 0 && run.keepAlive) {
             runner.restart();
