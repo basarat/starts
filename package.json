@@ -1,6 +1,6 @@
 {
   "name": "starts",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Simplify your live development workflow",
   "main": "lib/index.js",
   "typings": "lib/index",
