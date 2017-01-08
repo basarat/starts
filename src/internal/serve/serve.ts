@@ -1,11 +1,11 @@
 import { ServeConfig } from '../../types';
 
-export function serve(config: ServeConfig) {
+export function serve(config: ServeConfig & { verbose: boolean }) {
   return new Server(config);
 }
 
 export class Server {
-  constructor(config: ServeConfig) {
+  constructor(private options: ServeConfig & { verbose: boolean }) {
 
   }
 

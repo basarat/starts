@@ -2,5 +2,6 @@ export type ServeConfig = {
 
 }
 export type StartsConfig = {
-  serve?: ServeConfig
+  verbose?: boolean,
+  serve?: ServeConfig,
 };
