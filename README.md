@@ -11,6 +11,8 @@
 
 I consult as a pure frontend developer and normally have all JS / HTML generated into a `public` folder that we then upload to our CDN (normally S3). We have a few projects with `"start": "npm run emails:live & npm run pdfs:live & npm run app:live"`. It was time for something simpler. Perhaps you are are same  🌹
 
+> Think of it as `concurrently`, `nodemon` and `light-server` merged to play well with each other 🌹
+
 ## Quick starts
 Install
 
@@ -78,9 +80,6 @@ export type StartsConfig = {
   initialRun?: boolean
 }
 ```
-
-## Inspiration
-Inspired by `concurrently`, `nodemon` and light-server 🌹
 
 [travis-image]:https://travis-ci.org/basarat/starts.svg?branch=master
 [travis-url]:https://travis-ci.org/basarat/starts
