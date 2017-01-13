@@ -20,8 +20,8 @@ export function starts(config: StartsConfig) {
       /**
        * Logs
        */
-      runner.onStdout.on(({ lines }) => lines.map(line => console.log(`[${index}] ${line}`)));
-      runner.onStderr.on(({ lines }) => lines.map(line => console.log(`[${index}] ${line}`)));
+      runner.onStdout.on(({ lines }) => lines.map(line => process.stdout.write(`[${index}] ${line}`)));
+      runner.onStderr.on(({ lines }) => lines.map(line => process.stderr.write(`[${index}] ${line}`)));
 
       /** Keep alive */
       if (run.keepAlive) {
