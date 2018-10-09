@@ -1,3 +1,6 @@
+# Deprecated 
+I don't use it, or maintain it anymore 🌹
+
 # starts
 
 > Simplify your live development workflow ❤️
