@@ -1,4 +1,7 @@
 # Deprecated 
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/basarat/starts.svg)](https://greenkeeper.io/)
+
 I don't use it, or maintain it anymore 🌹
 
 # starts

@@ -27,20 +27,20 @@
   },
   "homepage": "https://github.com/basarat/starts#readme",
   "devDependencies": {
-    "@types/chokidar": "1.4.31",
-    "@types/connect": "3.4.30",
-    "@types/node": "6.0.58",
+    "@types/chokidar": "2.1.3",
+    "@types/connect": "3.4.32",
+    "@types/node": "12.6.3",
     "@types/parseurl": "^1.3.0",
-    "@types/serve-static": "1.7.31",
-    "@types/ws": "0.0.37",
-    "typescript": "2.1.4"
+    "@types/serve-static": "1.13.2",
+    "@types/ws": "6.0.1",
+    "typescript": "3.5.3"
   },
   "dependencies": {
-    "chokidar": "1.6.1",
-    "connect": "3.6.6",
+    "chokidar": "3.0.2",
+    "connect": "3.7.0",
     "connect-injector": "0.4.4",
     "parseurl": "^1.3.1",
-    "serve-static": "1.13.2",
-    "ws": "^1.1.1"
+    "serve-static": "1.14.1",
+    "ws": "^7.1.0"
   }
 }
